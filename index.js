@@ -1,10 +1,9 @@
 import { createCharacterCard } from "./components/card/card.js";
-// import { maxPageCount } from "./components/nav-pagination/nav-pagination.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
-// const searchBarContainer = document.querySelector(
-//   '[data-js="search-bar-container"]'
-// );
+const searchBarContainer = document.querySelector(
+  '[data-js="search-bar-container"]'
+);
 const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
 const prevButton = document.querySelector('[data-js="button-prev"]');
@@ -50,7 +49,7 @@ prevButton.addEventListener("click", async () => {
   await fetchCharacters(page, searchQuery);
 });
 
-async function fetchCharacters(value, search = "") {
+export async function fetchCharacters(value, search = "") {
   try {
     const response = await fetch(
       `https://rickandmortyapi.com/api/character/?page=${value}&name=${search}`
@@ -68,6 +67,5 @@ async function fetchCharacters(value, search = "") {
     alert("Morty died");
   }
 }
-
 maxPage = await fetchCharacters();
 pagination.textContent = `${page} / ${maxPage}`;
